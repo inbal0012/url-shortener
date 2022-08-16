@@ -34,8 +34,4 @@ app.MapControllerRoute(
         name: "default",
         pattern: "{controller=Home}/{action=Index}/{url?}");
 
-//app.MapGet("/{url}", (string url) => {
-//    return url;
-//});
-
 app.Run();
