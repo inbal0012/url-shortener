@@ -1,7 +1,15 @@
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
+builder.Services.AddCors(c => {
+    c.AddPolicy("AllowOrigin", options => options.AllowAnyOrigin()
+      .AllowAnyMethod()
+      .AllowAnyHeader()
+    );
+});
+
 
 var app = builder.Build();
 
@@ -16,12 +24,18 @@ if (!app.Environment.IsDevelopment())
 app.UseHttpsRedirection();
 app.UseStaticFiles();
 
+app.UseCors("AllowAllOrigins");
+
 app.UseRouting();
 
 app.UseAuthorization();
 
 app.MapControllerRoute(
-    name: "default",
-    pattern: "{controller=Home}/{action=Index}/{id?}");
+        name: "default",
+        pattern: "{controller=Home}/{action=Index}/{url?}");
+
+//app.MapGet("/{url}", (string url) => {
+//    return url;
+//});
 
 app.Run();

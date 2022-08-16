@@ -1,0 +1,24 @@
+﻿@model ShortenedUrl;
+
+@{
+    ViewData["Title"] = "Shortened Url";
+}
+
+<script type="text/javascript">
+
+    function GetShortUrl(shortUrl) {
+        if (!shortUrl.includes("https://") {
+            shortUrl = "https://" + shortUrl;
+        }
+        return shortUrl
+
+    }
+
+</script>
+<div style="width: 100%; padding: 30px;">
+    <div>
+        <div>Short Code: @Model.ShortCode</div>
+        <div>Short Url: <a href="GetShortUrl(@Model.ShortUrl)">@Model.ShortUrl</a></div>
+        <div>Long Url: @Model.OriginalUrl</div>
+    </div>
+</div>
